@@ -14,10 +14,38 @@
     width: 20rem;
     height: 30rem;
     position: relative;
-    border: 1px solid black;
+    border: none;
     border-radius: 1rem;
     &__title {
       font-size: 2.5rem;
+      color: white;
+      font-weight: 500;
+      font-size: 3.2rem;
     }
+    &__description{
+      color: white;
+      text-align: center;
+      font-weight: 300;
+      size: 0.8rem;
+      width: 17.5rem;
+    }
+    .button-container{
+      display: flex;
+      
+    }
+    button{
+      color: white;
+      width: 12.7rem;
+      height: 2.6rem;
+      size: 0.85rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.086);
+      box-shadow: -2px -2px 5px 2px rgba(255, 255, 255, 0.047) inset;
+      box-shadow: 2px 2px 5px 1px rgba(204, 219, 232, 0.1) inset;
+      background: linear-gradient(84deg, #000000 0%, rgba(203, 203, 203, 0.267755) 99.98%, rgba(255, 255, 255, 0.08) 99.99%, #000000 100%);
+      
+    }
+
   }
 }
