@@ -3,37 +3,37 @@ import CardBalance from '@src/modules/shared/components/Cards/Card-BALANCE/Card-
 import { PATH } from '../../routes/paths'
 import GithubIcon from '@src/modules/shared/assets/icons/github'
 import { useAuthGard } from '../../hook/useAuthgard'
+import Canvas from '@src/modules/shared/components/Canvas/Canvas'
+import { message } from 'antd'
 const Login = () => {
   useAuthGard()
-  const location = window.location
-  console.log(location)
-  console.log(PATH.LOGIN,"path")
+  const location = window.location.origin
   async function signInWithGithub() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${location.origin}${PATH.LOGIN}`,
+        redirectTo: `${location}${PATH.LOGIN}`,
       },
     })
-    console.log(data)
-    
-    
+    await supabase.auth.getSession()
+    message.success('sign in successful')    
   }
 
-  return (
-    <CardBalance>
-      <div className="login-module">
-        <div className="login-module__card">
-          <p className="login-module__card__title">Welcome
-            <p className="login-module__card__description"> Login via your Github account to get started with our app </p>
-          </p> 
-            <button onClick={signInWithGithub}>
-              <GithubIcon className="button-icon"/>
-              <p className="button-desc">Sign in with Github</p>
-            </button>
-          </div>
-        </div>
-    </CardBalance>
+  return ( 
+        <div className="login-module">
+          <CardBalance>
+            <div className="login-module__card">
+              <p className="login-module__card__title">Welcome</p> 
+                <p className="login-module__card__description"> Login via your Github account to get started with our app </p>
+              
+                <button onClick={signInWithGithub}>
+                  <GithubIcon className="button-icon"/>
+                  <p className="button-desc">Sign in with Github</p>
+                </button>
+              </div>
+          </CardBalance>
+          <Canvas/>
+      </div>
   )
 }
 
