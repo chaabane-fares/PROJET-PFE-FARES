@@ -1,9 +1,11 @@
+import { login } from '@src/modules/auth/data/authThunk'
 import routes, { renderRoutes } from '@src/modules/shared/routes'
 import { useAppSelector } from '@src/modules/shared/store'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const App = () => {
@@ -15,6 +17,7 @@ const App = () => {
 
 //to set default path  : 
 const navigate=useNavigate()
+const dispatch=useDispatch()
 const {isAuthenticated}=useAppSelector(state=>state.auth) 
 const location = useLocation()
   const pathName = location.pathname
@@ -27,7 +30,9 @@ const location = useLocation()
       }
     }
   }, [isAuthenticated, pathName])
-
+  useEffect(()=>{
+    dispatch<any>(login())
+  },[])
 
   return (
     <div id={theme}>

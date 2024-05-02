@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import jwtDecode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { clearTokens, getTokens } from '../utils/token'
 import useIsMountedRef from '../hook/useIsMountedRef'
@@ -18,11 +17,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const isMounted = useIsMountedRef()
   const dispatch = useDispatch()
 
-  const isValidToken = (token: string) => {
-    const decoded: JwtPayload = jwtDecode(token)
-    const currentTime = Date.now() / 1000
-    return decoded.exp > currentTime
-  }
+  const isValidToken = (token: string) => true
 
   useEffect(() => {
     if (!isMounted.current) {
