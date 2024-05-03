@@ -8,6 +8,7 @@ import CardSkew from "../shared/components/Cards/Cards-SKEW/Card-skew";
 import NoData from "../shared/components/NoData";
 import { useAppSelector } from "../shared/store";
 import MainLayout from "../shared/layout/MainLayout/MainLayout";
+import './index.scss';
 
 
 export default function Repositories () {
@@ -26,11 +27,11 @@ export default function Repositories () {
 
     return (
         <MainLayout>                        
-
+            
         <MainContainer                     // same as div : feha le continue as children feha css mte3ha 7a4er
             linkProps={{
                 title:'repositories',      // titre of the page
-                links:[{href:PATH.REPO ,name: 'repositories'}],
+                links:[{href:PATH.REPO ,name: 'repositories'}], 
             }}
             style={{ paddingBottom: 0 }}
             >

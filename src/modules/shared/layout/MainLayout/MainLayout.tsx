@@ -1,4 +1,3 @@
-import Canvas from '../../components/Canvas/Canvas'
 import Header from '../../components/Header'
 import Stars from '../../components/Stars'
 import UniverseWrapper from '../UniverseWrapper'
