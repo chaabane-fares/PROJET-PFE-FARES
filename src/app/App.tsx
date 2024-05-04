@@ -24,7 +24,7 @@ const location = useLocation()
   useEffect(() => {
     if (pathName === '/' || !pathName) {
       if (!isAuthenticated) {
-        navigate('/login') //there is an error when i use PATH.login (cannot find PATH)
+        navigate('/login') //we can use navigate(PATH.login)
       } else {
         navigate('/')
       }
@@ -37,7 +37,7 @@ const location = useLocation()
   return (
     <div id={theme}>
       <Helmet>
-        <title>Welcome - Github code reviewer</title>
+        <title>Github code reviewer</title>
       </Helmet>
       <QueryClientProvider client={queryClient}>{renderRoutes(routes)}</QueryClientProvider>
     </div>

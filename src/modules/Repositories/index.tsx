@@ -28,7 +28,7 @@ export default function Repositories () {
     return (
         <MainLayout>                        
             
-        <MainContainer                     // same as div : feha le continue as children feha css mte3ha 7a4er
+        <MainContainer                     // same as div : feha le continue as children feha css mte3ha 7a4err
             linkProps={{
                 title:'repositories',      // titre of the page
                 links:[{href:PATH.REPO ,name: 'repositories'}], 
