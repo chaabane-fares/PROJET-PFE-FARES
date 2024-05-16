@@ -29,11 +29,10 @@ export default function LoadingScreen({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className={`loader-github ${blur ? 'loader-github--blur' : ''}`}
-        style={style.background}
+        style={style?.background}
       >
-        <Lottie options={defaultOptions} height={250} width={250} style={style.lottie} />
+        <Lottie options={defaultOptions} height={style.lottie.height} width={style.lottie.width} />
       </motion.div>
     </AnimatePresence>
   )
 }
-
