@@ -1,0 +1,74 @@
+.OnePullRequest-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  
+  
+    &__left-part {
+      display: flex;
+      gap: 0.7rem;
+      flex-direction: column;
+      justify-content: flex-start;
+  
+      &__title {
+          color: white;
+          font-size: 1rem;
+      }
+      &__date {
+        color: white;
+        opacity: 0.5;
+      }
+    }
+    &__right-part{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     &__icons{
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+       width: 100%;
+       justify-content: space-between;
+       &__avatar{
+        width: 2rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.204);
+        }
+        &__isverified{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 0.5rem;
+          &__state{
+            &__open{  color: green;
+              font-size: 1.5rem;
+            }
+              &__closed{
+                color: red;
+              font-size: 1rem;
+              }
+          
+  
+            
+          }
+          &__icon{
+            width: 2rem;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.204);
+          }
+        }
+       
+     }
+     &__date__content{
+      color: white;
+      opacity: 0.5;
+     }
+    }
+  }

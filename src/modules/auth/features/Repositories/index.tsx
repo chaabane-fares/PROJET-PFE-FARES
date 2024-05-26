@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { fetchGitHubRepositories } from "../shared/store/Queries/Repositories";
-import { PATH } from "../auth/routes/paths";
-import MainContainer from "../shared/layout/MainContainer/MainContainer";
-import LoadingScreen from "../shared/components/Loading";
-import CardSkew from "../shared/components/Cards/Cards-SKEW/Card-skew";
-import NoData from "../shared/components/NoData";
-import { useAppSelector } from "../shared/store";
-import MainLayout from "../shared/layout/MainLayout/MainLayout";
+import { fetchGitHubRepositories } from "../../../shared/store/Queries/Repositories";
+import { PATH } from "../../routes/paths";
+import MainContainer from "../../../shared/layout/MainContainer/MainContainer";
+import LoadingScreen from "../../../shared/components/Loading";
+import CardSkew from "../../../shared/components/Cards/Cards-SKEW/Card-skew";
+import NoData from "../../../shared/components/NoData";
+import { useAppSelector } from "../../../shared/store";
+import MainLayout from "../../../shared/layout/MainLayout/MainLayout";
 import './index.scss';
 
 
@@ -22,7 +22,7 @@ export default function Repositories () {
         cacheTime : 1 ,       // pour contrôler la durée pendant laquelle les données mises en cache sont conservées en mémoire.
    } ) 
     const handleRepoClick = (repo : string) => {
-        navigate(PATH.REPO.replace(':id',repo))
+        navigate(PATH.PULLREQUEST.replace(':id',repo))
     }
 
     return (

@@ -43,6 +43,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true
       state.user = user
       state.status = 'succeeded'
+  
     })
     builder.addCase(login.rejected, (state, action: PayloadAction<any>) => {
       state.error = action?.payload

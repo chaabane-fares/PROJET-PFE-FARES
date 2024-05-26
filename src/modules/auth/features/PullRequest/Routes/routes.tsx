@@ -17,7 +17,7 @@ const routes: RouteConfig[] = [
   {
     exact: true,
     guard: AuthGuard,
-    path: PATH.HOME,
+    path: PATH.PULLREQUEST,
     component: lazy(() => import('../index')),
     layout: (props: any) => <UniverseWrapper {...props} />,
   },
