@@ -1,6 +1,8 @@
 import { login } from '@src/modules/auth/data/authThunk'
+import LoadingScreen from '@src/modules/shared/components/Loading'
+import UniverseWrapper from '@src/modules/shared/layout/UniverseWrapper'
 import routes, { renderRoutes } from '@src/modules/shared/routes'
-import { useAppSelector } from '@src/modules/shared/store'
+import { useAppDispatch, useAppSelector } from '@src/modules/shared/store'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
@@ -15,11 +17,11 @@ const App = () => {
 
   const theme = useAppSelector((state) => state.theme.mode)
 
-//to set default path  : 
-const navigate=useNavigate()
-const dispatch=useDispatch()
-const {isAuthenticated}=useAppSelector(state=>state.auth) 
-const location = useLocation()
+  //to set default path  :
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const { isAuthenticated, status } = useAppSelector((state) => state.auth)
+  const location = useLocation()
   const pathName = location.pathname
   useEffect(() => {
     if (pathName === '/' || !pathName) {
@@ -30,10 +32,15 @@ const location = useLocation()
       }
     }
   }, [isAuthenticated, pathName])
-  useEffect(()=>{
-    dispatch<any>(login())
-  },[])
-
+  useEffect(() => {
+    !isAuthenticated && dispatch(login())
+  }, [])
+  if (status === 'loading')
+    return (
+      <UniverseWrapper>
+        <LoadingScreen size="full" />
+      </UniverseWrapper>
+    )
   return (
     <div id={theme}>
       <Helmet>

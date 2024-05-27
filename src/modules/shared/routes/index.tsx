@@ -4,6 +4,7 @@ import { Routes, Route, RouteProps } from 'react-router-dom'
 
 import pages from './routes'
 import LazyLoad from '../components/LazyLoad/LazyLoad'
+import LoadingScreen from '../components/Loading'
 
 type RouteConfig = {
   exact: boolean | null
@@ -14,7 +15,7 @@ type RouteConfig = {
 } & RouteProps
 
 export const renderRoutes = (routes: RouteConfig[] = []) => (
-  <Suspense fallback={<LazyLoad />}>
+  <Suspense fallback={<LoadingScreen size="full" blur />}>
     <Routes>
       {routes.map((route, index) => {
         const Component = route.component

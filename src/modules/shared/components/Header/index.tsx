@@ -4,7 +4,8 @@ import { logout } from '@src/modules/auth/data/authThunk'
 
 export default function Header() {
   const dispatch = useAppDispatch()
-  const { user } = useAppSelector((state) => state.auth)
+  const user = useAppSelector((state) => state.auth.user)
+  console.log(user)
   const { avatar_url, email, user_name } = user?.user_metadata || {}
   async function signOut() {
     dispatch(logout())
