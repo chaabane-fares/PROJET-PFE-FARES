@@ -22,7 +22,7 @@
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
-    "diff2html": "^3.4.47",
+    "diff2html": "^3.4.48",
     "diff2html-cli": "^5.2.15",
     "formik": "^2.4.2",
     "framer-motion": "^11.0.5",

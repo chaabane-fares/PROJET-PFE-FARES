@@ -1,0 +1,27 @@
+.code-diff {
+  width: 100%;
+  overflow: hidden;
+  &__wrapper {
+    width: 100%;
+    animation: enter 0.3s ease-in-out;
+  }
+  .d2h-file-list-wrapper {
+    display: none;
+  }
+  * {
+    color: white;
+    line-height: 2;
+  }
+  .d2h-dark-color-scheme {
+    background: rgb(29, 29, 29) !important;
+  }
+  .d2h-del {
+    background-color: rgba(253, 0, 46, 0.5) !important;
+  }
+  .d2h-ins {
+    background-color: rgba(181, 255, 8, 0.5) !important;
+  }
+  .d2h-cntx {
+    background-color: rgba(70, 185, 242, 0.25) !important;
+  }
+}
