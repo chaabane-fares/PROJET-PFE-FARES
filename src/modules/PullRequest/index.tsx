@@ -3,7 +3,7 @@ import { Collapse } from 'antd'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import Commits from './commits'
+import Commits from './Commits/commits'
 import './index.scss'
 import OnePullRequest from './OnePullRequest'
 import LoadingScreen from '@src/modules/shared/components/Loading'
@@ -45,7 +45,7 @@ export default function PullRequest() {
               key: `${pull.number}`,
               label: <OnePullRequest pull={pull} />, // pull request header
               // pull request commits list
-              children: <Commits PullId={pull.number} />,
+              children: <Commits CommitId={pull.number} />,
             }))}
           />
         )}

@@ -17,6 +17,6 @@ export async function fetchGitHubPullRequestCommits(props: {
       )
       return response.data
     } catch (error) {
-      message.error('Failed to fetch pull request commits')
+      message.error('Failed to get commits list')
     }
   }

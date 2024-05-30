@@ -1,0 +1,47 @@
+@use '../../shared/assets/styles/abstracts/mixins' as *;
+.one-commit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: flex-start;
+
+    &__head {
+      width: fit-content;
+      &__title {
+        color: white;
+        background-color:  #E79614;
+        border-radius: 0.5rem;
+        padding: 0.2rem 0.5rem;
+      }
+    }
+    &__content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      &__left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+  
+        &__avatar {
+          width: 2rem;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 2px solid rgba(255, 255, 255, 0.204);
+        }
+        &__message {
+          color: black;
+          font-size: 1rem;
+        }
+      }
+  
+      &__right__message {
+        color: black;
+        opacity: 0.5;
+      }
+    }
+  }
