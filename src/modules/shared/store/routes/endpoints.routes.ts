@@ -6,4 +6,5 @@ export const endpoints = {
   getOneCommits: `repos/:user/:repo/commits/:ref`,
   getOneFileContent: `repos/:user/:repo/contents/:path?ref=:ref`,
   getOneFileChanges: `repos/:owner/:repo/commits/:sha`,
+  getOneCommitChanges: `/repos/:owner/:repo/commits/:commitSHA`,
 }

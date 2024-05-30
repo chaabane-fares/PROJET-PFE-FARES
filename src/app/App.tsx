@@ -7,7 +7,6 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const App = () => {
