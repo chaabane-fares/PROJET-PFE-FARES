@@ -40,7 +40,6 @@ const authSlice = createSlice({
     })
     builder.addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
       const { user } = action.payload
-      console.log(user, 'user')
       state.isAuthenticated = true
       state.user = user
       state.status = 'succeeded'
