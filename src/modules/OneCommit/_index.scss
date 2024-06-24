@@ -1,3 +1,106 @@
+@use '../shared/assets/styles/abstracts/mixins' as *;
+.one-commit-page {
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem 0 1rem;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+  &__files {
+    @include Flex(column, start, start);
+    gap: 0.5rem;
+    &__one-file {
+      @include Flex(row, space-between);
+      @include GlassEffect();
+      gap: 1rem;
+      padding: 1rem;
+      width: 20rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background: rgba(138, 138, 138, 0.232);
+      }
+      &--active {
+        background: rgba(138, 138, 138, 0.381);
+        &:hover {
+          background: rgba(138, 138, 138, 0.381);
+        }
+      }
+      &__stats {
+        @include Flex();
+        gap: 1rem;
+      }
+      &__name {
+        color: white;
+        max-width: 14rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+    &__title {
+      color: white;
+      font-size: 1.2rem;
+      padding-left: 0.5rem;
+      font-weight: 700;
+    }
+  }
+  &__content {
+    @include Flex(column);
+  }
+  &__file-changes {
+    color: white;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
+    &--delete {
+      background-color: #ef233c;
+    }
+    &--addition {
+      background-color: #2dc653;
+    }
+  }
+  &__content {
+    @include Flex(column, start, start);
+    gap: 0.5rem;
+    &__blanc {
+      @include Flex(column);
+      @include GlassEffect();
+      width: 100%;
+      min-height: 30rem;
+      height: 50vh;
+
+      &:has(.editor) {
+        justify-content: flex-start;
+      }
+      &__editor {
+        width: 100%;
+        padding: 1rem;
+        position: relative;
+        overflow: auto;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      &__one-file {
+        @include Flex(column);
+        gap: 1rem;
+        &__src {
+          width: 8rem;
+        }
+        &__message {
+          color: white;
+          font-size: 1rem;
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
 .code-diff {
   width: 100%;
   overflow: hidden;
