@@ -1,4 +1,4 @@
-import { BootApiKey, BootApiRoute } from '@src/modules/AIModal/api/context'
+import { BootApiRoute } from '@src/modules/AIModal/api/context'
 import { useEffect, useState } from 'react'
 
 export default function UseBootStream(prompt: string) {
@@ -7,6 +7,7 @@ export default function UseBootStream(prompt: string) {
   const [textLines, setTextLines] = useState('')
   const [language, setLanguage] = useState('')
   const message = ` ${prompt} `
+  const BootApiKey = import.meta.env.VITE_APP_BOOT_KEY
   const messageIndex = '```'
   useEffect(() => {
     async function startChat() {

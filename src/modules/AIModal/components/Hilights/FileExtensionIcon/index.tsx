@@ -12,7 +12,7 @@ export default function FileExtensionIcon({
   useEffect(() => {
     const importFile = async () => {
       try {
-        const { default: icon } = await import(`../../assets/extensions/ic-${file}.svg`)
+        const { default: icon } = await import(`../../../assets/extensions/ic-${file}.svg`)
         setIconPath(icon)
       } catch (error) {
         console.error('Error importing file icon:', error)

@@ -8,16 +8,18 @@ import emptyFile from '../shared/assets/images/folder_empty.png'
 import { useAppSelector } from '../shared/store'
 import { fetchCommitChanges, fetchCommitContent } from '../shared/store/Queries/Commits'
 import { useEffect, useState } from 'react'
-import { Tooltip } from 'antd'
+import { Modal, Tooltip } from 'antd'
 import MainLayout from '../shared/layout/MainLayout/MainLayout'
 import { fetchOneFileChangesContent } from '../shared/store/Queries/Files'
 import ReviewButton from '../shared/components/Buttons/Review'
+import StreamComponent from '../StreamComponent/StreamComponent'
 
 const CommitPage = () => {
   const { user } = useAppSelector((state) => state.auth)
   const { id, commitId } = useParams()
   const [selectedFile, setSelectedFile] = useState<any>(undefined)
   const [selectedFileContent, setSelectedContent] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const { data: diffString } = useQuery({
     queryFn: () =>
       fetchCommitChanges({
@@ -69,7 +71,8 @@ const CommitPage = () => {
       DiffStyleType: 'char',
     })
 
-  console.log('commit content', { files: commitContent?.files })
+  console.log({ fileContent })
+  const prompt = fileContent?.content ? atob(fileContent?.content!) : ''
 
   function extractDiffContent(diffString: string, fileName: string) {
     const fileStartIndex = diffString?.indexOf(`diff --git a/${fileName} b/${fileName}`) // get the start  index of the selected file  ( Each file start with : diff --git a/fileName b/fileName )
@@ -150,9 +153,17 @@ const CommitPage = () => {
                   </div>
                 )}
                 {fileContent?.content ? (
-                  <ReviewButton title={'review changes '} onClick={() => alert('hello world')} />
+                  <ReviewButton title={'review changes '} onClick={() => setIsModalOpen(true)} />
                 ) : null}
               </div>
+              <Modal
+                title={'Code Review'}
+                className="editor__modal"
+                open={isModalOpen}
+                onCancel={() => setIsModalOpen(false)}
+              >
+                <StreamComponent prompt={prompt} />
+              </Modal>
             </div>
           </div>
         </div>
