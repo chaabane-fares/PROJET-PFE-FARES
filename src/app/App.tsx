@@ -17,20 +17,9 @@ const App = () => {
   const theme = useAppSelector((state) => state.theme.mode)
 
   //to set default path  :
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { isAuthenticated, status } = useAppSelector((state) => state.auth)
-  const location = useLocation()
-  const pathName = location.pathname
-  useEffect(() => {
-    if (pathName === '/' || !pathName) {
-      if (!isAuthenticated) {
-        navigate('/login') //we can use navigate(PATH.login)
-      } else {
-        navigate('/')
-      }
-    }
-  }, [isAuthenticated, pathName])
+
   useEffect(() => {
     !isAuthenticated && dispatch(login())
   }, [])

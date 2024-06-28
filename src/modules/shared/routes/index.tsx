@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Suspense, Fragment } from 'react'
-import { Routes, Route, RouteProps } from 'react-router-dom'
+import { Fragment, Suspense } from 'react'
+import { Route, RouteProps, Routes } from 'react-router-dom'
 
 import pages from './routes'
-import LazyLoad from '../components/LazyLoad/LazyLoad'
-import LoadingScreen from '../components/Loading'
 
 type RouteConfig = {
   exact: boolean | null
@@ -15,7 +13,7 @@ type RouteConfig = {
 } & RouteProps
 
 export const renderRoutes = (routes: RouteConfig[] = []) => (
-  <Suspense fallback={<LoadingScreen size="full" blur />}>
+  <Suspense>
     <Routes>
       {routes.map((route, index) => {
         const Component = route.component

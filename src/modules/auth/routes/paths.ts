@@ -1,8 +1,7 @@
 export const PATH = {
-  ROOT: '/',
   LOGIN: '/login',
   REGISTER: '/register',
-  HOME: '/home',
+  HOME: '/',
   REPO: '/repositories',
   PULLREQUEST: '/repositories/:id',
   ONECOMMIT: '/repositories/:id/:commitId',

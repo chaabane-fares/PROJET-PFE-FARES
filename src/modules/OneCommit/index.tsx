@@ -13,6 +13,8 @@ import MainLayout from '../shared/layout/MainLayout/MainLayout'
 import { fetchOneFileChangesContent } from '../shared/store/Queries/Files'
 import ReviewButton from '../shared/components/Buttons/Review'
 import StreamComponent from '../StreamComponent/StreamComponent'
+import UniverseWrapper from '../shared/layout/UniverseWrapper'
+import LoadingScreen from '../shared/components/Loading'
 
 const CommitPage = () => {
   const { user } = useAppSelector((state) => state.auth)
@@ -33,7 +35,7 @@ const CommitPage = () => {
     cacheTime: 0,
   })
 
-  const { data: commitContent } = useQuery({
+  const { data: commitContent, isLoading } = useQuery({
     queryFn: () =>
       fetchCommitContent({
         repo: id!,
@@ -90,6 +92,12 @@ const CommitPage = () => {
     }
   }, [selectedFile])
 
+  if (isLoading)
+    return (
+      <UniverseWrapper>
+        <LoadingScreen size="full" blur />
+      </UniverseWrapper>
+    )
   return (
     <MainLayout>
       <MainContainer
@@ -153,7 +161,9 @@ const CommitPage = () => {
                   </div>
                 )}
                 {fileContent?.content ? (
-                  <ReviewButton title={'review changes '} onClick={() => setIsModalOpen(true)} />
+                  <div className="stream-wrapper__button">
+                    <ReviewButton title={'Review changes'} onClick={() => setIsModalOpen(true)} />
+                  </div>
                 ) : null}
               </div>
               <Modal

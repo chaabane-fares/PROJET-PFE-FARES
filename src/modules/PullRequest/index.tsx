@@ -36,7 +36,7 @@ export default function PullRequest() {
         style={{ paddingBottom: 0 }}
       >
         {isLoading ? (
-          <LoadingScreen />
+          <LoadingScreen size="full" />
         ) : !pullRequests || pullRequests?.length === 0 ? (
           <NoData title={'No pull requests'} />
         ) : (
