@@ -74,8 +74,8 @@ const CommitPage = () => {
       return diffString.slice(fileStartIndex, fileEndIndex)
     }
     if (diffString) {
-      const extractDiffString = extractDiffContent(diffString, selectedFile?.path!)
-      const diffHtml = Diff2Html.html(extractDiffString, {
+      const extractDiffString = extractDiffContent(diffString, selectedFile?.filename!)
+      const newDiffHtml = Diff2Html.html(extractDiffString, {
         inputFormat: 'diff',
         highlight: true,
         //@ts-ignore
@@ -84,9 +84,9 @@ const CommitPage = () => {
         drawFileList: true,
         DiffStyleType: 'char',
       })
-      setDiffHtml(diffHtml)
+      setDiffHtml(newDiffHtml)
     }
-  }, [diffString, selectedFile])
+  }, [selectedFile])
 
   if (isLoading)
     return (
@@ -96,6 +96,8 @@ const CommitPage = () => {
     )
 
   console.log({ selectedFile }, 'file')
+  console.log({ diffHtml })
+  console.log({ diffString })
   return (
     <MainLayout>
       <MainContainer
@@ -143,7 +145,7 @@ const CommitPage = () => {
             <p className="one-commit-page__files__title">File Content :</p>
             <div className="one-commit-page__content__blanc">
               <div className="one-commit-page__content__blanc__editor">
-                {diffHtml ? (
+                {selectedFile ? (
                   <div className="code-diff__wrapper">
                     <div className="code-diff" dangerouslySetInnerHTML={{ __html: diffHtml }} />
                   </div>
