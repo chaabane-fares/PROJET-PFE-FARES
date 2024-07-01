@@ -9,6 +9,7 @@
   align-items: start;
   justify-content: center;
   gap: 2rem;
+
   &__files {
     @include Flex(column, start, start);
     gap: 0.5rem;

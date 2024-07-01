@@ -72,7 +72,9 @@ const CommitPage = () => {
         ?.slice(fileStartIndex + stringLength + 1)
         ?.indexOf('diff --git')
 
-      return diffString.slice(fileStartIndex, fileStartIndex + fileEndIndex)
+      return fileEndIndex != -1
+        ? diffString.slice(fileStartIndex, fileStartIndex + fileEndIndex)
+        : diffString.slice(fileStartIndex)
     }
     if (diffString) {
       const extractDiffString = extractDiffContent(diffString, selectedFile?.filename!)
@@ -96,9 +98,6 @@ const CommitPage = () => {
       </UniverseWrapper>
     )
 
-  console.log({ selectedFile }, 'file')
-  console.log({ diffHtml })
-  console.log({ diffString })
   return (
     <MainLayout>
       <MainContainer
@@ -167,14 +166,16 @@ const CommitPage = () => {
                   </div>
                 ) : null}
               </div>
-              <Modal
-                title={'Code Review'}
-                className="editor__modal"
-                open={isModalOpen}
-                onCancel={() => setIsModalOpen(false)}
-              >
-                <StreamComponent prompt={prompt} />
-              </Modal>
+              {isModalOpen && (
+                <Modal
+                  title={'Code Review'}
+                  className="editor__modal"
+                  open={isModalOpen}
+                  onCancel={() => setIsModalOpen(false)}
+                >
+                  <StreamComponent prompt={prompt} />
+                </Modal>
+              )}
             </div>
           </div>
         </div>
