@@ -64,32 +64,29 @@ const CommitPage = () => {
 
   const prompt = fileContent?.content ? atob(fileContent?.content!) : ''
 
-  function extractDiffContent(diffString: string, fileName: string) {
-    const fileStartIndex = diffString?.indexOf(`diff --git a/${fileName} b/${fileName}`) // get the start  index of the selected file  ( Each file start with : diff --git a/fileName b/fileName )
-    const stringLength = `diff --git a/${fileName} b/${fileName}`?.length // get the start paragraph length "diff --git a/fileName b/fileName "
-    const fileEndIndex = diffString // the first index of  'diff --git' in the diffString excluding the ( fileStartIndex + stringLength )
-      ?.slice(fileStartIndex + stringLength + 1)
-      ?.indexOf('diff --git')
-    const selectedFileDiff = diffString.slice(fileStartIndex, fileEndIndex)
-    return selectedFileDiff
-  }
   useEffect(() => {
-    // nesst7a9oha bch yraj3elna kn l file eli 7achtna bih
-    if (selectedFile?.filename) {
-      const selectedFileContent = extractDiffContent(diffString, selectedFile.filename)
-      const newdiffHtml =
-        selectedFileContent &&
-        Diff2Html.html(selectedFileContent!, {
-          inputFormat: 'diff',
-          highlight: true,
-          colorScheme: 'dark',
-          outputFormat: 'line-by-line',
-          drawFileList: true,
-          DiffStyleType: 'char',
-        })
-      setDiffHtml(newdiffHtml)
+    function extractDiffContent(diffString: string, fileName: string) {
+      const fileStartIndex = diffString?.indexOf(`diff --git a/${fileName} b/${fileName}`)
+      const stringLength = `diff --git a/${fileName} b/${fileName}`?.length
+      const fileEndIndex = diffString
+        ?.slice(fileStartIndex + stringLength + 1)
+        ?.indexOf('diff --git')
+      return diffString.slice(fileStartIndex, fileEndIndex)
     }
-  }, [selectedFile])
+    if (diffString) {
+      const extractDiffString = extractDiffContent(diffString, selectedFile?.path!)
+      const diffHtml = Diff2Html.html(extractDiffString, {
+        inputFormat: 'diff',
+        highlight: true,
+        //@ts-ignore
+        colorScheme: 'dark',
+        outputFormat: 'line-by-line',
+        drawFileList: true,
+        DiffStyleType: 'char',
+      })
+      setDiffHtml(diffHtml)
+    }
+  }, [diffString, selectedFile])
 
   if (isLoading)
     return (
@@ -97,6 +94,8 @@ const CommitPage = () => {
         <LoadingScreen size="full" blur />
       </UniverseWrapper>
     )
+
+  console.log({ selectedFile }, 'file')
   return (
     <MainLayout>
       <MainContainer
