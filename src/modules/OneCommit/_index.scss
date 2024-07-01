@@ -12,6 +12,12 @@
   &__files {
     @include Flex(column, start, start);
     gap: 0.5rem;
+    max-height: 50vh;
+    overflow-y: auto;
+    width: 20rem;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     &__one-file {
       @include Flex(row, space-between);
       @include GlassEffect();
