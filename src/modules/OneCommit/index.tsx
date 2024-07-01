@@ -20,8 +20,8 @@ const CommitPage = () => {
   const { user } = useAppSelector((state) => state.auth)
   const { id, commitId } = useParams()
   const [selectedFile, setSelectedFile] = useState<any>(undefined)
-  const [selectedFileContent, setSelectedContent] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [diffHtml, setDiffHtml] = useState('')
   const { data: diffString } = useQuery({
     queryFn: () =>
       fetchCommitChanges({
@@ -62,18 +62,6 @@ const CommitPage = () => {
     cacheTime: 0,
   })
 
-  const diffHtml =
-    selectedFileContent &&
-    Diff2Html.html(selectedFileContent!, {
-      inputFormat: 'diff',
-      highlight: true,
-      colorScheme: 'dark',
-      outputFormat: 'line-by-line',
-      drawFileList: true,
-      DiffStyleType: 'char',
-    })
-
-  console.log({ fileContent })
   const prompt = fileContent?.content ? atob(fileContent?.content!) : ''
 
   function extractDiffContent(diffString: string, fileName: string) {
@@ -83,12 +71,23 @@ const CommitPage = () => {
       ?.slice(fileStartIndex + stringLength + 1)
       ?.indexOf('diff --git')
     const selectedFileDiff = diffString.slice(fileStartIndex, fileEndIndex)
-    setSelectedContent(selectedFileDiff)
+    return selectedFileDiff
   }
   useEffect(() => {
     // nesst7a9oha bch yraj3elna kn l file eli 7achtna bih
     if (selectedFile?.filename) {
-      extractDiffContent(diffString, selectedFile.filename)
+      const selectedFileContent = extractDiffContent(diffString, selectedFile.filename)
+      const newdiffHtml =
+        selectedFileContent &&
+        Diff2Html.html(selectedFileContent!, {
+          inputFormat: 'diff',
+          highlight: true,
+          colorScheme: 'dark',
+          outputFormat: 'line-by-line',
+          drawFileList: true,
+          DiffStyleType: 'char',
+        })
+      setDiffHtml(newdiffHtml)
     }
   }, [selectedFile])
 
