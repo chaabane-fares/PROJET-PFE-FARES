@@ -71,11 +71,8 @@ const CommitPage = () => {
       const fileEndIndex = diffString
         ?.slice(fileStartIndex + stringLength + 1)
         ?.indexOf('diff --git')
-      console.log({ fileName })
-      console.log({ fileStartIndex })
-      console.log({ fileEndIndex })
-      console.log({ fileContent: diffString.slice(fileStartIndex, fileEndIndex) })
-      return diffString.slice(fileStartIndex, fileEndIndex)
+
+      return diffString.slice(fileStartIndex, fileStartIndex + fileEndIndex)
     }
     if (diffString) {
       const extractDiffString = extractDiffContent(diffString, selectedFile?.filename!)
