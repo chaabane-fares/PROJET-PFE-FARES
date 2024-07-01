@@ -25,7 +25,9 @@ const StreamComponent = ({ prompt }: { prompt?: string }) => {
             <img src={llamaAvatar} className="stream-wrapper__text__avatar" />
             <p className="stream-wrapper__text__name">Open ai assistant</p>
           </div>
-          {codeLines && <HilightCode readyToUse={codeLines} language={language! || 'jsx'} />}
+          {codeLines && (
+            <HilightCode readyToUse={codeLines} language={language! || 'jsx'} addLinesNumbers />
+          )}
           <p className="stream-wrapper__text__content">{textLines}</p>
           {!lines && (
             <Lottie options={defaultOptions} height={25} width={50} style={{ margin: 0 }} />

@@ -10,12 +10,6 @@ type RouteConfig = {
   layout?: React.ComponentType<any> | typeof Fragment
 } & RouteProps
 
-const routes: RouteConfig[] = [
-  {
-    exact: true,
-    path: '*',
-    component: lazy(() => import('../features/NotFound/NotFound')),
-  },
-]
+const routes: RouteConfig[] = []
 
 export default routes

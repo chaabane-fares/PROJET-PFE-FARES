@@ -70,7 +70,7 @@
       @include GlassEffect();
       width: 100%;
       min-height: 30rem;
-      height: 50vh;
+      max-height: 50vh;
 
       &:has(.editor) {
         justify-content: flex-start;
@@ -191,6 +191,7 @@
     width: 100%;
     @include Flex(row, flex-end);
     bottom: 0;
+    left: 0;
     position: fixed;
     backdrop-filter: blur(2px);
     background: rgba(92, 92, 92, 0.174);
